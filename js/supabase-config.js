@@ -1,7 +1,7 @@
 
 
 const SUPABASE_URL = "https://xjsvmckozntbhxfovura.supabase.co";      // e.g. https://abcdefgh.supabase.co
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqc3ZtY2tvem50Ymh4Zm92dXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMDAwNDksImV4cCI6MjEwMTg3NjA0OX0.91PbWWqgKDBDorh525uecKaGZD21FGSoCeR_WtIUR-l-ihg0";    // starts with "eyJ..."
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqc3ZtY2tvem50Ymh4Zm92dXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMDAwNDksImV4cCI6MjEwMTg3NjA0OX0.914p6jTyHRtGBxLBFhDxsVWCpTRxHF_WtIUR-l-ihg0";    // starts with "eyJ..."
 
 const SUPABASE_CONFIGURED =
   SUPABASE_URL.startsWith("http") && SUPABASE_ANON_KEY.length > 20;
