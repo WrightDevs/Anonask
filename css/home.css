@@ -1,0 +1,106 @@
+/* Landing page — AnonAsk */
+
+/* ---- Hero: the shareable sticker is the thesis ---- */
+.hero { padding: clamp(var(--s-7), 9vw, var(--s-9)) 0 var(--s-8); }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: clamp(var(--s-6), 6vw, var(--s-8));
+  align-items: center;
+}
+.hero-eyebrow { margin-bottom: var(--s-5); }
+.hero h1 { margin: 0; }
+.hero .lede { margin-top: var(--s-5); font-size: 1.12rem; max-width: 44ch; color: var(--muted); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+.hero-trust { margin-top: var(--s-5); font-size: .8rem; color: var(--muted-dim); font-family: var(--mono); }
+
+/* the share sticker — the thing you screenshot to your story */
+.share-stack { position: relative; justify-self: center; width: min(100%, 400px); }
+.share-stack::before {
+  content: ""; position: absolute; inset: 18px -14px -18px 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-3); transform: rotate(5deg); z-index: 0;
+}
+.share-sticker {
+  position: relative; z-index: 1;
+  background: var(--grad-tri);
+  border-radius: var(--radius-3);
+  padding: 14px;
+  box-shadow: var(--glow);
+  transform: rotate(-3deg);
+  transition: transform var(--duration-1) var(--ease);
+}
+.share-sticker:hover { transform: rotate(0deg) translateY(-4px); }
+.share-inner {
+  background: var(--color-surfaces-2);      /* white sticker face */
+  color: var(--color-text-2);
+  border-radius: var(--radius-2);
+  padding: var(--s-6) var(--s-5);
+}
+.ss-head { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-5); }
+.ss-label { font-family: var(--ui); font-weight: 700; font-size: .9rem; color: #000; }
+.ss-label small { display: block; font-weight: 500; color: #8A8A90; font-size: .74rem; }
+.ss-q {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(1.5rem, 3.4vw, 1.9rem); line-height: 1.1; letter-spacing: -.03em;
+  color: #000; min-height: 2.2em;
+}
+.ss-input {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+  margin-top: var(--s-5);
+  background: var(--color-surfaces-3);       /* #EEEEEE */
+  border-radius: var(--r-pill);
+  padding: var(--s-2) var(--s-2) var(--s-2) var(--s-5);
+}
+.ss-input span { font-family: var(--ui); color: #9A9AA0; font-size: .92rem; }
+.ss-send {
+  flex: none; width: 40px; height: 40px; border-radius: var(--r-pill);
+  display: grid; place-items: center; background: var(--grad); color: #fff;
+  font-size: 1.1rem; font-weight: 700;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .whisper-in { animation: whisperIn .5s var(--ease); }
+  @keyframes whisperIn { from { opacity: 0; transform: translateY(8px); } }
+}
+
+/* ---- Section scaffolding ---- */
+.section { padding: var(--s-8) 0; }
+.section-head { max-width: 52ch; margin-bottom: var(--s-7); }
+.section-head .eyebrow { margin-bottom: var(--s-3); }
+.section-head p { margin-top: var(--s-3); }
+
+/* ---- How it works: a genuine 3-step sequence, so numbering earns its place ---- */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); list-style: none; }
+.step { padding: var(--s-6) var(--s-5); transition: transform var(--duration-1) var(--ease), border-color .2s; }
+.step:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--pink) 50%, var(--border)); }
+.step-num { font-family: var(--mono); font-size: .78rem; letter-spacing: .1em; color: transparent; background: var(--grad-text); -webkit-background-clip: text; background-clip: text; }
+.step h3 { margin: var(--s-4) 0 var(--s-2); font-family: var(--display); font-weight: 800; font-size: 1.15rem; }
+.step p { font-size: .94rem; }
+
+/* ---- Privacy / the schema promise ---- */
+.promise { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); align-items: center; }
+.promise-card { padding: clamp(var(--s-5), 4vw, var(--s-7)); }
+.promise h2 { margin-top: var(--s-3); }
+.promise ul { list-style: none; display: grid; gap: var(--s-3); margin-top: var(--s-5); }
+.promise li { display: flex; gap: var(--s-3); color: var(--muted); font-size: .96rem; }
+.promise li b { color: var(--white); font-weight: 700; }
+.check { color: var(--orange); flex: none; margin-top: .1em; font-weight: 700; }
+.promise-visual {
+  font-family: var(--mono); font-size: .84rem; line-height: 1.85;
+  background: #08080A; border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: var(--s-6); color: var(--muted);
+}
+.promise-visual .k { color: var(--lav); }
+.promise-visual .redacted { background: var(--grad); color: transparent; border-radius: 5px; padding: 0 .4em; user-select: none; }
+
+/* ---- Final CTA ---- */
+.cta-band { text-align: center; padding: clamp(var(--s-7), 8vw, var(--s-9)) 0; }
+.cta-band .eyebrow { justify-content: center; }
+.cta-band h2 { max-width: 20ch; margin: var(--s-4) auto var(--s-6); }
+
+/* ---- Responsive ---- */
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .promise { grid-template-columns: 1fr; }
+}

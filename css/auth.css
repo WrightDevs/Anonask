@@ -1,0 +1,32 @@
+/* Auth pages — register & login */
+.auth-shell { width: 100%; max-width: 460px; }
+
+.auth-head { text-align: center; margin-bottom: var(--s-6); }
+.auth-head .veil { margin: 0 auto var(--s-4); }
+.auth-head h1 { font-size: clamp(2.1rem, 5vw, 2.9rem); }
+.auth-head p { margin-top: var(--s-3); color: var(--muted); }
+
+.auth-card { padding: clamp(var(--s-5), 5vw, var(--s-7)); }
+.auth-card .field + .field,
+.auth-card .field + .form-error,
+.auth-card .form-error + .field { margin-top: var(--s-4); }
+.auth-card .submit-row { margin-top: var(--s-6); }
+
+.link-preview-box {
+  margin-top: var(--s-3);
+  font-family: var(--mono);
+  font-size: .82rem;
+  color: var(--muted);
+  background: #08080A;
+  border: 1px dashed var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-4);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.link-preview-box b { color: var(--orange); font-weight: 700; }
+
+.auth-alt { text-align: center; margin-top: var(--s-5); color: var(--muted-dim); font-size: .92rem; }
+.auth-alt a { color: var(--lav); font-weight: 700; }
+.auth-back { display: inline-flex; margin-top: var(--s-5); color: var(--muted-dim); font-size: .85rem; }
+.auth-back:hover { color: var(--muted); }

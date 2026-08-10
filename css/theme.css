@@ -1,0 +1,394 @@
+/* ============================================================
+   AnonAsk — theme.css
+   Bold, playful, share-first: a pitch-black canvas lit by one
+   pink→orange gradient. The signature object is the share sticker
+   you screenshot to your story. Loaded on every page.
+   ============================================================ */
+
+/* ---- Fonts ----
+   Display face is ES Rebond Grotesque Extrabold when licensed/installed,
+   with Bricolage Grotesque (free, same chunky-grotesque energy) as the
+   web fallback so the look holds without the paid font. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+/* ---- Design tokens ---- */
+:root {
+  /* --- brand tokens (provided) --- */
+  --color-primary: #ED1980;
+  --color-primary-1: #ED1980;
+  --color-primary-2: #FFFFFF;
+  --color-text-1: #FFFFFF;
+  --color-text-2: #000000;
+  --color-text-3: #999999;
+  --color-surfaces-1: #000000;
+  --color-surfaces-2: #FFFFFF;
+  --color-surfaces-3: #EEEEEE;
+  --color-links-1: #FFFFFF;
+  --color-links-2: #CCCCCC;
+  --color-accents-1: #FE831B;
+  --color-accents-2: #E2BCFF;
+  --font-display: "ES Rebond Grotesque Extrabold", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --radius-1: 9999px;
+  --radius-2: 31px;
+  --radius-3: 47px;
+  --radius-4: 44px;
+  --radius-5: 43px;
+  --radius-6: 23px;
+  --duration-1: 0.3s;
+  --ease-1: cubic-bezier(0.44, 0, 0.56, 1);
+
+  /* --- semantic palette built on the brand tokens --- */
+  --pink:   #ED1980;
+  --orange: #FE831B;
+  --lav:    #E2BCFF;
+  --white:  #FFFFFF;
+
+  --bg:        #000000;  /* page                       */
+  --surface:   #101012;  /* raised cards               */
+  --surface-2: #17171A;  /* inputs / hover             */
+  --surface-3: #202024;  /* pressed / chips            */
+  --border:    #2A2A30;  /* hairlines                  */
+  --muted:     #A7A7B0;  /* secondary text             */
+  --muted-dim: #6E6E78;  /* tertiary text              */
+  --danger:    #FF4D6D;  /* destructive                */
+
+  /* the signature gradient */
+  --grad:      linear-gradient(135deg, #ED1980 0%, #FE831B 100%);
+  --grad-tri:  linear-gradient(135deg, #E2BCFF 0%, #ED1980 45%, #FE831B 100%);
+  --grad-text: linear-gradient(120deg, #FE831B, #ED1980 60%, #E2BCFF);
+
+  /* --- legacy aliases (old var names → new palette) so nothing breaks --- */
+  --ink: var(--bg); --ink-2: #0A0A0B;
+  --velvet: var(--surface); --velvet-2: var(--surface-2); --line: var(--border);
+  --gold: var(--pink); --gold-deep: var(--orange);
+  --paper: var(--white); --paper-ink: #0B0B0C;
+  --mist: var(--muted); --mist-dim: var(--muted-dim); --coral: var(--danger);
+
+  /* --- type / space / shape --- */
+  --display: var(--font-display);
+  --ui:      var(--font-body);
+  --mono:    'Space Mono', ui-monospace, monospace;
+
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+  --r-sm: 14px; --r-md: 22px; --r-lg: 34px; --r-pill: 9999px;
+
+  --shadow: 0 24px 60px -24px rgba(0,0,0,.85);
+  --glow:   0 14px 44px -10px rgba(237,25,128,.55);
+  --ring:   0 0 0 3px rgba(237,25,128,.4);
+
+  --wrap: 1120px;
+  --ease: var(--ease-1);
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--ui);
+  background: var(--bg);
+  color: var(--white);
+  line-height: 1.55;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Ambient gradient light so pure black never feels dead. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(90% 60% at 78% -8%, rgba(237,25,128,.20), transparent 60%),
+    radial-gradient(80% 55% at 12% 108%, rgba(254,131,27,.16), transparent 60%),
+    radial-gradient(60% 50% at 50% 50%, rgba(226,188,255,.05), transparent 70%);
+  pointer-events: none;
+}
+/* faint grain */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: .05;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Typography ---- */
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -.03em;
+}
+h1 { font-size: clamp(2.6rem, 7vw, 5rem); }
+h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+h3 { font-size: 1.3rem; letter-spacing: -.02em; }
+a { color: inherit; text-decoration: none; }
+p  { color: var(--muted); }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--lav);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+/* gradient text helper */
+.grad-text {
+  background: var(--grad-text);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.serif-italic { font-style: italic; }
+
+/* ---- Layout helpers ---- */
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--s-5); }
+.stack > * + * { margin-top: var(--s-4); }
+.center-screen { min-height: 100vh; display: grid; place-items: center; padding: var(--s-6) var(--s-4); }
+.muted { color: var(--muted-dim); }
+.hidden { display: none !important; }
+.mono { font-family: var(--mono); }
+
+/* ---- Top bar ---- */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.brand { display: inline-flex; align-items: center; gap: var(--s-3); font-family: var(--display); font-weight: 800; font-size: 1.2rem; letter-spacing: -.03em; }
+.brand .veil { flex: none; }
+.topbar nav { display: flex; align-items: center; gap: var(--s-2); }
+
+/* ---- The mask mark: our stand-in for "anonymous", in brand gradient ---- */
+.veil {
+  width: 34px; height: 34px; border-radius: var(--r-pill);
+  display: inline-grid; place-items: center;
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 6px 18px -6px rgba(237,25,128,.6);
+}
+.veil svg { width: 60%; height: 60%; display: block; }
+.veil.lg { width: 66px; height: 66px; }
+
+/* ---- Buttons ---- */
+.btn {
+  --bg: var(--surface-2);
+  font-family: var(--ui);
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
+  padding: var(--s-3) var(--s-5);
+  min-height: 48px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--bg);
+  color: var(--white);
+  cursor: pointer;
+  transition: transform .18s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease), border-color .2s, filter .2s;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--surface-3); transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+.btn:focus-visible { outline: none; box-shadow: var(--ring); }
+
+/* primary = the gradient (kept class name .btn-gold so markup is untouched) */
+.btn-gold {
+  --bg: var(--grad);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--glow);
+}
+.btn-gold:hover { filter: brightness(1.07) saturate(1.05); }
+
+.btn-ghost { background: transparent; border-color: transparent; }
+.btn-ghost:hover { background: var(--surface-2); }
+
+.btn-danger { color: var(--danger); }
+.btn-danger:hover { background: color-mix(in srgb, var(--danger) 16%, transparent); border-color: color-mix(in srgb, var(--danger) 45%, transparent); }
+
+.btn-sm { min-height: 40px; padding: var(--s-2) var(--s-4); font-size: .86rem; }
+.btn-block { width: 100%; }
+.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; filter: none; }
+
+/* ---- Cards ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow);
+}
+.card-pad { padding: clamp(var(--s-5), 4vw, var(--s-7)); }
+
+/* ---- Forms ---- */
+.field { display: block; }
+.field > label {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--white);
+  margin-bottom: var(--s-2);
+}
+.input, .textarea {
+  width: 100%;
+  font-family: var(--ui);
+  font-size: 1rem;
+  color: var(--white);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s-4);
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.textarea { min-height: 130px; resize: vertical; line-height: 1.6; }
+.input::placeholder, .textarea::placeholder { color: var(--muted-dim); }
+.input:focus, .textarea:focus { outline: none; border-color: var(--pink); box-shadow: var(--ring); background: var(--surface); }
+
+/* input with a fixed prefix, e.g.  ?u=|_______  */
+.input-prefixed {
+  display: flex; align-items: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.input-prefixed:focus-within { border-color: var(--pink); box-shadow: var(--ring); }
+.input-prefixed .prefix {
+  font-family: var(--mono); font-size: .95rem; font-weight: 700; color: var(--orange);
+  padding: 0 var(--s-2) 0 var(--s-4); white-space: nowrap;
+}
+.input-prefixed .input { border: 0; box-shadow: none !important; background: transparent; padding-left: 0; }
+
+.field-note { font-size: .82rem; color: var(--muted-dim); margin-top: var(--s-2); }
+.field-note.ok  { color: #57D9A3; }
+.field-note.bad { color: var(--danger); }
+
+.form-error {
+  font-size: .9rem;
+  color: #fff;
+  background: color-mix(in srgb, var(--danger) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger) 50%, transparent);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-4);
+}
+
+/* ---- The message card: where an anonymous note lives ---- */
+.note {
+  position: relative;
+  background: var(--surface);
+  color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-5);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+/* gradient hairline along the top edge */
+.note::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--grad);
+}
+.note-head { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-4); }
+.note-from { font-family: var(--ui); font-weight: 700; font-size: .95rem; color: var(--white); }
+.note-from small { display: block; font-family: var(--mono); font-size: .7rem; color: var(--muted-dim); font-weight: 400; letter-spacing: .02em; }
+.note-time { margin-left: auto; font-family: var(--mono); font-size: .72rem; color: var(--muted-dim); }
+.note-body { font-family: var(--display); font-weight: 700; font-size: 1.4rem; line-height: 1.25; letter-spacing: -.02em; color: var(--white); word-break: break-word; }
+
+/* ---- Pills / counters ---- */
+.pill {
+  font-family: var(--mono); font-size: .72rem; letter-spacing: .06em;
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.count-badge {
+  font-family: var(--mono); font-weight: 700; font-size: .82rem;
+  min-width: 28px; height: 28px; padding: 0 var(--s-2);
+  display: inline-grid; place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--grad); color: #fff;
+}
+
+/* ---- Toast ---- */
+.toast-host {
+  position: fixed; left: 50%; bottom: var(--s-6); transform: translateX(-50%);
+  z-index: 100; display: flex; flex-direction: column; gap: var(--s-2);
+  pointer-events: none;
+}
+.toast {
+  font-size: .92rem; font-weight: 600;
+  background: var(--white); color: #000;
+  padding: var(--s-3) var(--s-5);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow);
+  animation: toast-in .3s var(--ease);
+}
+.toast.err { background: var(--danger); color: #fff; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(10px); } }
+
+/* ---- Setup banner ---- */
+.setup-banner { display: none; }
+.needs-config .setup-banner {
+  display: block;
+  font-size: .9rem; font-weight: 600;
+  text-align: center;
+  color: #fff;
+  background: var(--grad);
+  padding: var(--s-3) var(--s-4);
+}
+.needs-config .setup-banner a { text-decoration: underline; font-weight: 800; }
+
+/* ---- Footer ---- */
+.footer {
+  border-top: 1px solid var(--border);
+  background: #050506;
+  padding: var(--s-7) 0;
+  margin-top: var(--s-9);
+  color: var(--muted-dim);
+  font-size: .85rem;
+}
+.footer .wrap { display: flex; flex-wrap: wrap; gap: var(--s-4); justify-content: space-between; align-items: center; }
+
+/* ---- Accessibility & motion ---- */
+:focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--r-sm); }
+.skip-link {
+  position: absolute; left: var(--s-4); top: -60px;
+  background: var(--pink); color: #fff; padding: var(--s-2) var(--s-4);
+  border-radius: var(--r-sm); z-index: 200; transition: top .2s;
+}
+.skip-link:focus { top: var(--s-4); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+
+/* ---- Small screens: keep the top bar from overflowing ---- */
+@media (max-width: 560px) {
+  .topbar { padding: var(--s-3) var(--s-4); gap: var(--s-2); }
+  .brand { font-size: 1.05rem; }
+  .brand .muted { display: none; }
+  .topbar nav { gap: var(--s-1); }
+  .topbar nav .btn { padding-inline: var(--s-3); font-size: .82rem; }
+}
+@media (max-width: 380px) {
+  .brand-word { display: none; }
+}

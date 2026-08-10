@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — AnonAsk</title>
+  <meta name="description" content="Log in to read the anonymous notes in your inbox." />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="setup-banner">
+    Supabase keys not added yet — open <b>js/supabase-config.js</b> and paste your Project URL + anon key.
+  </div>
+
+  <main id="main" class="center-screen">
+    <div class="auth-shell">
+      <div class="auth-head">
+        <span class="veil lg" id="veil-slot"></span>
+        <h1>Welcome back</h1>
+        <p>Log in to read the notes waiting in your inbox.</p>
+      </div>
+
+      <form class="card auth-card" id="login-form" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input class="input" id="email" type="email" autocomplete="email"
+                 placeholder="you@email.com" required />
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input class="input" id="password" type="password" autocomplete="current-password"
+                 placeholder="Your password" required />
+        </div>
+
+        <div class="form-error hidden" id="form-error" role="alert"></div>
+
+        <div class="submit-row">
+          <button class="btn btn-gold btn-block" id="submit-btn" type="submit">Log in</button>
+        </div>
+      </form>
+
+      <p class="auth-alt">New here? <a href="register.html">Create your link</a></p>
+      <div style="text-align:center"><a class="auth-back" href="index.html">← Back home</a></div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById("veil-slot").innerHTML = window.VEIL_SVG;
+    initLogin();
+  </script>
+</body>
+</html>

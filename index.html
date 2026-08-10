@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnonAsk — anonymous messages, hidden senders</title>
+  <meta name="description" content="Share your AnonAsk link. Collect honest, anonymous messages from friends. You never see who sent them." />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="setup-banner">
+    Supabase keys not added yet — open <b>js/supabase-config.js</b> and paste your Project URL + anon key. See <b>SETUP-GUIDE.md</b>.
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="veil" id="brand-veil"></span>
+      <span class="brand-word">Anon<span class="grad-text">Ask</span></span>
+    </a>
+    <nav>
+      <a class="btn btn-ghost btn-sm" href="login.html">Log in</a>
+      <a class="btn btn-gold btn-sm" href="register.html">Create your link</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow hero-eyebrow">anonymous q&amp;a</div>
+          <h1>Anonymous messages from <span class="grad-text">everyone you know</span>.</h1>
+          <p class="lede">
+            Share one link and let friends drop honest messages — without ever leaving a name.
+            Every message lands in your inbox. Every sender stays hidden, by design.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-gold" href="register.html">Create your link — it's free</a>
+            <a class="btn" href="#how">See how it works</a>
+          </div>
+          <p class="hero-trust">no sender names · no emails · no tracking</p>
+        </div>
+
+        <div class="share-stack" aria-label="Example AnonAsk share sticker">
+          <div class="share-sticker">
+            <div class="share-inner">
+              <div class="ss-head">
+                <span class="veil" id="sticker-veil"></span>
+                <span class="ss-label">you on AnonAsk<small>send me an anonymous message</small></span>
+              </div>
+              <div class="ss-q" id="whisper-q">Who was your first crush?</div>
+              <div class="ss-input"><span>Type something honest…</span><span class="ss-send" aria-hidden="true">↑</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section wrap" id="how">
+      <div class="section-head">
+        <div class="eyebrow">the flow</div>
+        <h2>Three steps, start to inbox</h2>
+        <p>An anonymous sender needs no account. Only you, the receiver, log in.</p>
+      </div>
+      <ol class="steps" style="list-style:none">
+        <li class="card step">
+          <div class="step-num">STEP 01</div>
+          <h3>Claim your link</h3>
+          <p>Register once and pick a handle. You get <span class="mono">…/send.html?u=you</span> to share.</p>
+        </li>
+        <li class="card step">
+          <div class="step-num">STEP 02</div>
+          <h3>Share it anywhere</h3>
+          <p>Drop the link in your WhatsApp status, bio or group chat. Anyone who opens it can write.</p>
+        </li>
+        <li class="card step">
+          <div class="step-num">STEP 03</div>
+          <h3>Read your notes</h3>
+          <p>Messages land in your private inbox, each marked only as <b>Anonymous</b>. Read, delete or report.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- PRIVACY / THE SCHEMA PROMISE -->
+    <section class="section wrap">
+      <div class="promise">
+        <div class="card promise-card">
+          <div class="eyebrow">why it's really anonymous</div>
+          <h2 style="margin-top:var(--s-3)">Not a setting. The schema.</h2>
+          <ul>
+            <li><span class="check">✦</span><span>A message is stored against <b>the receiver</b> — there's no sender account attached to steal or leak.</span></li>
+            <li><span class="check">✦</span><span>Database rules let <b>only you</b> read your own inbox. Nobody else can query it.</span></li>
+            <li><span class="check">✦</span><span>We never record a sender name, email or profile. There is <b>nothing to reveal</b>.</span></li>
+          </ul>
+        </div>
+        <div class="promise-visual" aria-hidden="true">
+          <div><span class="k">messages</span> {</div>
+          <div>&nbsp;&nbsp;recipient_id: <span class="k">"you"</span>,</div>
+          <div>&nbsp;&nbsp;content: <span class="k">"who's your crush?"</span>,</div>
+          <div>&nbsp;&nbsp;created_at: <span class="k">"2m ago"</span>,</div>
+          <div>&nbsp;&nbsp;sender: <span class="redacted">████████████</span></div>
+          <div>}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band wrap">
+      <div class="eyebrow" style="justify-content:center">your turn</div>
+      <h2 style="margin-top:var(--s-4)">What will people tell you when their name is hidden?</h2>
+      <a class="btn btn-gold" href="register.html">Create your link</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>AnonAsk · a private inbox for anonymous messages</span>
+      <span class="mono">built with HTML · CSS · JS · Supabase</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

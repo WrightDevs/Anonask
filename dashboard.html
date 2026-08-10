@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your inbox — AnonAsk</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="setup-banner">
+    Supabase keys not added yet — open <b>js/supabase-config.js</b> and paste your Project URL + anon key.
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="dashboard.html">
+      <span class="veil" id="brand-veil"></span>
+      <span class="brand-word">Anon<span class="grad-text">Ask</span></span>
+    </a>
+    <nav>
+      <button class="btn btn-ghost btn-sm" id="logout-btn" type="button">Sign out</button>
+    </nav>
+  </header>
+
+  <main id="main" class="dash-main wrap">
+
+    <!-- shown while we check the session -->
+    <div id="loading" class="state">
+      <span class="veil lg" id="load-veil"></span>
+      <p>Opening your inbox…</p>
+    </div>
+
+    <!-- shown when logged in but no profile/handle exists yet -->
+    <section id="claim" class="card claim-card hidden">
+      <span class="veil lg" id="claim-veil"></span>
+      <h3>One last thing — pick your handle</h3>
+      <p class="muted">Your account has no public link yet. Choose a handle to start receiving notes.</p>
+      <form id="claim-form" style="margin-top:var(--s-5)">
+        <div class="field">
+          <div class="input-prefixed">
+            <span class="prefix">?u=</span>
+            <input class="input" id="claim-handle" type="text" placeholder="righteous"
+                   autocapitalize="off" autocomplete="off" spellcheck="false" maxlength="20" />
+          </div>
+          <p class="field-note" id="claim-note"></p>
+        </div>
+        <button class="btn btn-gold btn-block" id="claim-btn" type="submit" style="margin-top:var(--s-4)">Claim handle</button>
+      </form>
+    </section>
+
+    <!-- the real dashboard -->
+    <div id="dash" class="hidden">
+      <div class="dash-hello">
+        <div class="eyebrow">your private inbox</div>
+        <h1>Welcome, <span id="hello-name">friend</span> <span class="wave">👋</span></h1>
+      </div>
+
+      <section class="card share-card">
+        <div class="share-label">Your anonymous link — share it anywhere</div>
+        <div class="share-row">
+          <div class="link-box" id="link-box" title="Your link"></div>
+          <div class="share-actions">
+            <button class="btn btn-gold" id="copy-btn" type="button">Copy</button>
+            <button class="btn" id="share-btn" type="button">Share</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="inbox-head">
+        <h2>Your notes</h2>
+        <span class="count-badge" id="unread-count" title="Unread">0</span>
+        <div class="inbox-tools">
+          <button class="filter-btn" id="filter-all"    data-filter="all"    aria-pressed="true">All</button>
+          <button class="filter-btn" id="filter-unread" data-filter="unread" aria-pressed="false">Unread</button>
+          <button class="btn btn-ghost btn-sm" id="refresh-btn" type="button" title="Refresh">↻</button>
+        </div>
+      </div>
+
+      <div class="inbox" id="inbox"></div>
+
+      <!-- empty state -->
+      <div id="empty" class="state hidden">
+        <span class="veil lg" id="empty-veil"></span>
+        <h3>No notes yet</h3>
+        <p>Share your link and the first anonymous whisper will land right here.</p>
+        <button class="btn btn-gold" id="empty-copy" type="button">Copy my link</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

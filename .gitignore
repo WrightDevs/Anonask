@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Local scratch / verification scripts
+_verify.mjs
+_shots.mjs
+
+# Screenshots
+shot-*.png
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+
+# Claude local settings
+.claude/settings.local.json
+
+# Empty scratch files
+txt

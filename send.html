@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send an anonymous message — AnonAsk</title>
+  <meta name="description" content="Send an anonymous note. No account needed. They'll never know it's you." />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/send.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="setup-banner">
+    Supabase keys not added yet — open <b>js/supabase-config.js</b> and paste your Project URL + anon key.
+  </div>
+
+  <main id="main" class="send-main">
+    <div class="send-shell">
+
+      <!-- loading -->
+      <div id="loading" class="state">
+        <span class="veil lg" id="load-veil"></span>
+        <p>Finding this inbox…</p>
+      </div>
+
+      <!-- handle not found / no handle given -->
+      <div id="notfound" class="state hidden">
+        <span class="veil lg" id="nf-veil"></span>
+        <h3>This link doesn't lead anywhere</h3>
+        <p>The handle is missing or doesn't exist. Double-check the link you were given.</p>
+        <a class="btn btn-gold" href="register.html">Create your own inbox</a>
+      </div>
+
+      <!-- compose -->
+      <div id="compose-view" class="hidden">
+        <div class="recipient">
+          <span class="veil lg" id="rec-veil"></span>
+          <div class="to-label">send an anonymous note to</div>
+          <h1 id="rec-name">Someone</h1>
+          <div class="handle" id="rec-handle">@handle</div>
+          <p class="prompt">Say the thing you'd never say out loud.</p>
+        </div>
+
+        <form class="card note compose" id="send-form">
+          <div class="note-head">
+            <span class="veil" id="compose-veil"></span>
+            <span class="note-from">You, but hidden<small>they'll never know it's you</small></span>
+          </div>
+          <textarea class="write" id="message" maxlength="500" required
+                    placeholder="Type your anonymous message…" aria-label="Your anonymous message"></textarea>
+          <div class="compose-foot">
+            <span class="counter" id="counter">0 / 500</span>
+            <button class="btn btn-gold" id="send-btn" type="submit">Send anonymously</button>
+          </div>
+        </form>
+
+        <p class="send-foot-note">
+          <b>No account. No name. No trace.</b><br />
+          Your identity is never attached to this message.
+        </p>
+      </div>
+
+      <!-- sent -->
+      <div id="sent-view" class="card card-pad sent hidden">
+        <div class="seal seal-pop">✦</div>
+        <h2>Delivered</h2>
+        <p>Your note landed in <span id="sent-name">their</span> inbox — completely anonymous.</p>
+        <div class="actions">
+          <button class="btn btn-gold" id="send-another" type="button">Send another</button>
+        </div>
+        <div class="promo">
+          Want notes like this yourself? <a href="register.html">Create your own link →</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/send.js"></script>
+</body>
+</html>
